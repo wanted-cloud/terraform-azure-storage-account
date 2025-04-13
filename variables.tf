@@ -220,3 +220,15 @@ variable "blob_containers" {
   }))
   default = []
 }
+
+variable "static_website" {
+  description = "Static website configuration for the storage account."
+  type = object({
+    enabled            = bool
+    index_document     = optional(string, "index.html")
+    error_404_document = optional(string, "404.html")
+  })
+  default = {
+    enabled = false
+  }
+}

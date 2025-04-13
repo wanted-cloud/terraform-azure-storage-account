@@ -315,6 +315,28 @@ Type: `bool`
 
 Default: `true`
 
+### <a name="input_static_website"></a> [static\_website](#input\_static\_website)
+
+Description: Static website configuration for the storage account.
+
+Type:
+
+```hcl
+object({
+    enabled            = bool
+    index_document     = optional(string, "index.html")
+    error_404_document = optional(string, "404.html")
+  })
+```
+
+Default:
+
+```json
+{
+  "enabled": false
+}
+```
+
 ### <a name="input_table_encryption_key_type"></a> [table\_encryption\_key\_type](#input\_table\_encryption\_key\_type)
 
 Description: The type of encryption key to use for the table service. Possible values are: Account, Service, and Customer.
@@ -354,15 +376,36 @@ Default: `{}`
 
 The following outputs are exported:
 
+### <a name="output_blob_containers"></a> [blob\_containers](#output\_blob\_containers)
+
+Description: The blob containers created in the storage account.
+
+### <a name="output_file_shares"></a> [file\_shares](#output\_file\_shares)
+
+Description: The file shares created in the storage account.
+
+### <a name="output_queues"></a> [queues](#output\_queues)
+
+Description: The queues created in the storage account.
+
+### <a name="output_static_website"></a> [static\_website](#output\_static\_website)
+
+Description: The static website configuration for the storage account.
+
 ### <a name="output_storage_account"></a> [storage\_account](#output\_storage\_account)
 
 Description: The storage account object.
+
+### <a name="output_tables"></a> [tables](#output\_tables)
+
+Description: The tables created in the storage account.
 
 ## Resources
 
 The following resources are used by this module:
 
 - [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) (resource)
+- [azurerm_storage_account_static_website.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_static_website) (resource)
 - [azurerm_storage_container.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) (resource)
 - [azurerm_storage_queue.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue) (resource)
 - [azurerm_storage_share.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_share) (resource)
