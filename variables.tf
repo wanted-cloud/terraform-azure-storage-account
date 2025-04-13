@@ -156,3 +156,16 @@ variable "dns_endpoint_type" {
   default     = "Standard"
 
 }
+
+variable "tables" {
+  description = "Table type storages to be created in the storage account."
+  type = list(object({
+    name = string
+    acls = optional(list(object({
+      permission = string
+      start      = string
+      expiry     = string
+    })), [])
+  }))
+  default = []
+}

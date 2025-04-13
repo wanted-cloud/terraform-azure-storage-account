@@ -17,7 +17,7 @@ Terraform building block module managing Azure Storage account and its resources
 
 The following requirements are needed by this module:
 
-- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.9)
+- <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.11)
 
 - <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>=4.20.0)
 
@@ -249,6 +249,25 @@ Type: `string`
 
 Default: `"Service"`
 
+### <a name="input_tables"></a> [tables](#input\_tables)
+
+Description: Table type storages to be created in the storage account.
+
+Type:
+
+```hcl
+list(object({
+    name = string
+    acls = optional(list(object({
+      permission = string
+      start      = string
+      expiry     = string
+    })), [])
+  }))
+```
+
+Default: `[]`
+
 ### <a name="input_tags"></a> [tags](#input\_tags)
 
 Description: Tags to be applied to the Azure storage account.
@@ -259,13 +278,18 @@ Default: `{}`
 
 ## Outputs
 
-No outputs.
+The following outputs are exported:
+
+### <a name="output_storage_account"></a> [storage\_account](#output\_storage\_account)
+
+Description: The storage account object.
 
 ## Resources
 
 The following resources are used by this module:
 
 - [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) (resource)
+- [azurerm_storage_table.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table) (resource)
 - [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
 
 ## Usage
@@ -288,6 +312,9 @@ The minimal usage for the module is as follows:
 ```hcl
 module "template" {
     source = "../.."
+
+    name = "example"
+    resource_group_name = "test"
 }
 ```
 ## Contributing

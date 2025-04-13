@@ -26,9 +26,28 @@ resource "azurerm_storage_account" "this" {
   queue_encryption_key_type         = var.queue_encryption_key_type
   table_encryption_key_type         = var.table_encryption_key_type
   infrastructure_encryption_enabled = var.infrastructure_encryption_enabled
-  allowed_copy_scope                = var.allowed_copy_scope
+  allowed_copy_scope                = var.allowed_copy_scope != "" ? var.allowed_copy_scope : null
   sftp_enabled                      = var.sftp_enabled
   dns_endpoint_type                 = var.dns_endpoint_type
 
   tags = merge(local.metadata.tags, var.tags)
+
+  timeouts {
+    create = try(
+      local.metadata.resource_timeouts["azurerm_storage_account"]["create"],
+      local.metadata.resource_timeouts["default"]["create"]
+    )
+    read = try(
+      local.metadata.resource_timeouts["azurerm_storage_account"]["read"],
+      local.metadata.resource_timeouts["default"]["read"]
+    )
+    update = try(
+      local.metadata.resource_timeouts["azurerm_storage_account"]["update"],
+      local.metadata.resource_timeouts["default"]["update"]
+    )
+    delete = try(
+      local.metadata.resource_timeouts["azurerm_storage_account"]["delete"],
+      local.metadata.resource_timeouts["default"]["delete"]
+    )
+  }
 }
