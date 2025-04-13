@@ -87,6 +87,24 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_blob_containers"></a> [blob\_containers](#input\_blob\_containers)
+
+Description: Blob containers to be created in the storage account.
+
+Type:
+
+```hcl
+list(object({
+    name                              = string
+    metadata                          = optional(map(string), {})
+    access_type                       = optional(string, "private")
+    default_encryption_scope          = optional(string, "")
+    encryption_scope_override_enabled = optional(bool, false)
+  }))
+```
+
+Default: `[]`
+
 ### <a name="input_cross_tenant_replication_enabled"></a> [cross\_tenant\_replication\_enabled](#input\_cross\_tenant\_replication\_enabled)
 
 Description: Enable cross-tenant replication for the storage account.
@@ -118,6 +136,47 @@ Description: Specifies the Edge Zone within the Azure Region where this Storage 
 Type: `bool`
 
 Default: `false`
+
+### <a name="input_file_shares"></a> [file\_shares](#input\_file\_shares)
+
+Description: File shares to be created in the storage account.
+
+Type:
+
+```hcl
+list(object({
+    name             = string
+    quota            = optional(number, 50)
+    metadata         = optional(map(string), {})
+    access_tier      = optional(string, "Hot")
+    enabled_protocol = optional(string, "SMB")
+    acls = optional(list(object({
+      permission = string
+      start      = string
+      expiry     = string
+    })), [])
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_file_syncs"></a> [file\_syncs](#input\_file\_syncs)
+
+Description: Storage Fike Syncs to be created in the storage account.
+
+Type:
+
+```hcl
+list(object({
+    name                    = string
+    resource_group_name     = optional(string, "")
+    location                = optional(string, "")
+    incoming_traffic_policy = optional(string, "AllowAllTraffic")
+    tags                    = optional(map(string), {})
+  }))
+```
+
+Default: `[]`
 
 ### <a name="input_https_traffic_only_enabled"></a> [https\_traffic\_only\_enabled](#input\_https\_traffic\_only\_enabled)
 
@@ -225,6 +284,21 @@ Type: `string`
 
 Default: `"Service"`
 
+### <a name="input_queues"></a> [queues](#input\_queues)
+
+Description: Queue type storages to be created in the storage account.
+
+Type:
+
+```hcl
+list(object({
+    name     = string
+    metadata = optional(map(string), {})
+  }))
+```
+
+Default: `[]`
+
 ### <a name="input_sftp_enabled"></a> [sftp\_enabled](#input\_sftp\_enabled)
 
 Description: Enable SFTP for the storage account.
@@ -289,6 +363,10 @@ Description: The storage account object.
 The following resources are used by this module:
 
 - [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) (resource)
+- [azurerm_storage_container.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) (resource)
+- [azurerm_storage_queue.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue) (resource)
+- [azurerm_storage_share.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_share) (resource)
+- [azurerm_storage_sync.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_sync) (resource)
 - [azurerm_storage_table.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table) (resource)
 - [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
 

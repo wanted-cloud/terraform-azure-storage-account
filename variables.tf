@@ -169,3 +169,54 @@ variable "tables" {
   }))
   default = []
 }
+
+variable "queues" {
+  description = "Queue type storages to be created in the storage account."
+  type = list(object({
+    name     = string
+    metadata = optional(map(string), {})
+  }))
+  default = []
+}
+
+variable "file_syncs" {
+  description = "Storage Fike Syncs to be created in the storage account."
+  type = list(object({
+    name                    = string
+    resource_group_name     = optional(string, "")
+    location                = optional(string, "")
+    incoming_traffic_policy = optional(string, "AllowAllTraffic")
+    tags                    = optional(map(string), {})
+  }))
+  default = []
+}
+
+variable "file_shares" {
+  description = "File shares to be created in the storage account."
+  type = list(object({
+    name             = string
+    quota            = optional(number, 50)
+    metadata         = optional(map(string), {})
+    access_tier      = optional(string, "Hot")
+    enabled_protocol = optional(string, "SMB")
+    acls = optional(list(object({
+      permission = string
+      start      = string
+      expiry     = string
+    })), [])
+  }))
+  default = []
+
+}
+
+variable "blob_containers" {
+  description = "Blob containers to be created in the storage account."
+  type = list(object({
+    name                              = string
+    metadata                          = optional(map(string), {})
+    access_type                       = optional(string, "private")
+    default_encryption_scope          = optional(string, "")
+    encryption_scope_override_enabled = optional(bool, false)
+  }))
+  default = []
+}
