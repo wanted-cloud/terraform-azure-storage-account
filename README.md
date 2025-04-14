@@ -99,7 +99,7 @@ list(object({
     metadata                          = optional(map(string), {})
     access_type                       = optional(string, "private")
     default_encryption_scope          = optional(string, "")
-    encryption_scope_override_enabled = optional(bool, false)
+    encryption_scope_override_enabled = optional(bool, null)
   }))
 ```
 
@@ -355,6 +355,7 @@ Type:
 list(object({
     name = string
     acls = optional(list(object({
+      id         = string
       permission = string
       start      = string
       expiry     = string

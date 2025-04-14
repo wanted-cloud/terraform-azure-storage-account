@@ -5,8 +5,8 @@ resource "azurerm_storage_container" "this" {
   storage_account_id                = azurerm_storage_account.this.id
   container_access_type             = each.value.access_type
   metadata                          = each.value.metadata
-  default_encryption_scope          = each.value.default_encryption_scope
-  encryption_scope_override_enabled = each.value.encryption_scope_override_enabled
+  default_encryption_scope          = each.value.default_encryption_scope != "" ? each.value.default_encryption_scope : null
+  encryption_scope_override_enabled = each.value.encryption_scope_override_enabled != null ? each.value.encryption_scope_override_enabled : null
 
   timeouts {
     create = try(

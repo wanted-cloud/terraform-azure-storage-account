@@ -162,6 +162,7 @@ variable "tables" {
   type = list(object({
     name = string
     acls = optional(list(object({
+      id         = string
       permission = string
       start      = string
       expiry     = string
@@ -216,7 +217,7 @@ variable "blob_containers" {
     metadata                          = optional(map(string), {})
     access_type                       = optional(string, "private")
     default_encryption_scope          = optional(string, "")
-    encryption_scope_override_enabled = optional(bool, false)
+    encryption_scope_override_enabled = optional(bool, null)
   }))
   default = []
 }

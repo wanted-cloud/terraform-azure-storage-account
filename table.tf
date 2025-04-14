@@ -5,7 +5,7 @@ resource "azurerm_storage_table" "this" {
   storage_account_name = azurerm_storage_account.this.name
 
   dynamic "acl" {
-    for_each = { for acl in each.value.acl : acl.id => acl }
+    for_each = { for acl in each.value.acls : acl.id => acl }
     content {
       id = acl.value.id
       access_policy {
