@@ -19,13 +19,13 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.11)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>=4.20.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (=4.05.0)
 
 ## Providers
 
 The following providers are used by this module:
 
-- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (>=4.20.0)
+- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (=4.05.0)
 
 ## Required Inputs
 
@@ -133,9 +133,9 @@ Default: `"Standard"`
 
 Description: Specifies the Edge Zone within the Azure Region where this Storage Account should exist. Changing this forces a new Storage Account to be created.
 
-Type: `bool`
+Type: `string`
 
-Default: `false`
+Default: `null`
 
 ### <a name="input_file_shares"></a> [file\_shares](#input\_file\_shares)
 
@@ -405,14 +405,14 @@ Description: The tables created in the storage account.
 
 The following resources are used by this module:
 
-- [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) (resource)
-- [azurerm_storage_account_static_website.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_static_website) (resource)
-- [azurerm_storage_container.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) (resource)
-- [azurerm_storage_queue.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_queue) (resource)
-- [azurerm_storage_share.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_share) (resource)
-- [azurerm_storage_sync.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_sync) (resource)
-- [azurerm_storage_table.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_table) (resource)
-- [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) (data source)
+- [azurerm_storage_account.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_account) (resource)
+- [azurerm_storage_account_static_website.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_account_static_website) (resource)
+- [azurerm_storage_container.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_container) (resource)
+- [azurerm_storage_queue.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_queue) (resource)
+- [azurerm_storage_share.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_share) (resource)
+- [azurerm_storage_sync.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_sync) (resource)
+- [azurerm_storage_table.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/resources/storage_table) (resource)
+- [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/4.05.0/docs/data-sources/resource_group) (data source)
 
 ## Usage
 

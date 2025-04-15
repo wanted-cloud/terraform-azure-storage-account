@@ -48,8 +48,8 @@ variable "cross_tenant_replication_enabled" {
 
 variable "edge_zone" {
   description = "Specifies the Edge Zone within the Azure Region where this Storage Account should exist. Changing this forces a new Storage Account to be created."
-  type        = bool
-  default     = false
+  type        = string
+  default     = null
 }
 
 variable "https_traffic_only_enabled" {
